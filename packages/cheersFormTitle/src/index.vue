@@ -1,5 +1,5 @@
 <template>
-	<div class="cheersFormTitle" :style="{ borderLeftColor: borderLeftColor }">
+	<div class="cheersFormTitle" :style="{ borderLeftColor: bdcolor }">
 		<slot></slot>
 	</div>
 </template>
@@ -7,7 +7,7 @@
 export default {
 	name: "cheersFormTitle",
 	props: {
-		borderLeftColor: {
+		bdcolor: {
 			type: String,
 			default: "#409EFF"
 		},
