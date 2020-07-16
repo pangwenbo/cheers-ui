@@ -2,7 +2,7 @@
 	<el-form :inline="inline" :model="ruleForm" :rules="rules" ref="ruleForm" :label-width="labelWidth">
 		<el-row v-for="(row,index) in fieldList" :key="index+'row'">
 			<el-col v-for="(col,index) in row.row" :key="index+'col'" :span="col.col">
-				<cheerFormTitle>{{col.title}}</cheerFormTitle>
+				<cheerFormTitle :borderLeftColor="titleLeftColor">{{col.title}}</cheerFormTitle>
 				<el-form-item v-for="item in col.list" :label="item.label" :key="item.value" :value="item.value"
 					:prop="item.value">
 					<!-- solt -->
@@ -84,6 +84,10 @@ export default {
 		cheersFormTitle,
 	},
 	props: {
+		titleLeftColor: {
+			type: String,
+			default: "#409EFF"
+		},
 		inline: {
 			type: Boolean,
 			default: true

@@ -1,5 +1,5 @@
 <template>
-	<div class="cheersFormTitle" :style="{ borderLeftColor: backgroundColor }">
+	<div class="cheersFormTitle" :style="{ borderLeftColor: borderLeftColor }">
 		<slot></slot>
 	</div>
 </template>
