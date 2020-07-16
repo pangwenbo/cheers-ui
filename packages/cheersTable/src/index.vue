@@ -65,7 +65,7 @@
 </template>
 <script>
 export default {
-	name: "cheers-table",
+	name: "cheersTable",
 	components: {
 		row: {
 			functional: true,

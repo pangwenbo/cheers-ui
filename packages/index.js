@@ -1,4 +1,4 @@
-import cheersTable from './cheers-table'
+import cheersTable from './cheersTable'
 import testB from './testB'
 export default {
     install(Vue) {
