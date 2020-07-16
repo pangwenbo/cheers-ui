@@ -72,7 +72,7 @@
 
 <script>
 export default {
-	name: "cheersSeachBar",
+	name: "cheersSearchBar",
 	props: {
 		initListPermission: {
 			// 权限信息

@@ -1,5 +1,5 @@
 import cheersTable from './cheersTable'
-import cheersSeachBar from './cheersSeachBar'
+import cheersSearchBar from './cheersSearchBar'
 import cheersForm from './cheersForm'
 import cheersFormTitle from './cheersFormTitle'
 import cheersCard from './cheersCard'
@@ -11,7 +11,7 @@ export default {
         Vue.use(cheersFormTitle);
         Vue.use(cheersForm);
         Vue.use(cheersTable);
-        Vue.use(cheersSeachBar);
+        Vue.use(cheersSearchBar);
         Vue.use(cheersPaginations);
         Vue.use(testB)
     },
