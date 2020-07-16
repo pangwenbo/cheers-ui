@@ -23,7 +23,7 @@
 					<!-- 三级联动 cascader -->
 					<el-cascader v-if="item.type === 'Cascader'" :options="item.props.options" v-model="ruleForm[item.value]"
 						:placeholder="item.placeholder ||'请选择'+item.label" :disabled="item.disabled || false" style="width: 100%;"
-						:props="item.props" @change="item.change(ruleForm[item.value], item)" />
+						:props="item.props" @change="item.change &&item.change(searchForm[item.value])" />
 					<!-- 单选 -->
 					<el-radio-group v-if="item.type === 'Radio'" v-model="ruleForm[item.value]">
 						<el-radio v-for="childItem in item.options" :label="childItem[item.props.label]"
