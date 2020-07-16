@@ -1,18 +1,19 @@
 <template>
-	<div class="cheersFormTitle">
+	<div class="cheersFormTitle" :style="{ borderLeftColor: backgroundColor }">
 		<slot></slot>
 	</div>
 </template>
 <script>
 export default {
-	name: "cheersFormTitle"
+	name: "cheersFormTitle",
+	props: {
+		borderLeftColor: {
+			type: String,
+			default: "#409EFF"
+		},
+	},
 }
 </script>
 <style scoped>
-.cheersFormTitle {
-	font-size: 14px;
-	margin: 30px 10px 20px 0;
-	padding-left: 10px;
-	border-left: 4px solid #f2f2f2;
-}
+@import "./css/index.scss";
 </style>

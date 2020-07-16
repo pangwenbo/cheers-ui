@@ -63,11 +63,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.pages {
-	position: relative;
-	text-align: right;
-	margin-right: 30px;
-	margin-top: 10px;
-	bottom: 0px;
-}
+@import "./css/index.scss";
 </style>
