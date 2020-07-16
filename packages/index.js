@@ -1,8 +1,8 @@
-import testA from './testA'
+import cheersTable from './cheers-table'
 import testB from './testB'
 export default {
     install(Vue) {
-        Vue.use(testA);
+        Vue.use(cheersTable);
         Vue.use(testB)
     },
 }
