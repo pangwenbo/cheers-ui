@@ -10,59 +10,57 @@
 				<!-- 输入框||密码框 -->
 				<el-input v-if="item.type === 'Input'||item.type==='Password'" v-model="searchForm[item.value]"
 					:show-password="item.type === 'Password'" :placeholder="item.placeholder||'请输入'+item.label"
-					:disabled="item.disabled || false" />
+					v-bind="item.attr" />
+				<el-input-number v-if="item.type === 'NumberInput'" v-model="searchForm[item.value]" v-bind="item.attr" />
 				<!--下拉框  $forceUpdate() 下拉刷新,修复数据改变下拉框不变的bug -->
 				<el-select v-if="item.type === 'Select'" v-model="searchForm[item.value]" @visible-change="$forceUpdate()"
-					:disabled="item.disabled || false" :placeholder=" item.placeholder||'请选择'+item.label"
-					@change="item.change &&item.change(searchForm[item.value])">
-					<el-option v-for="childItem in item.options" :label="childItem[item.props.label]"
+					:placeholder=" item.placeholder||'请选择'+item.label" v-bind="item.attr"
+					@change="item.change && item.change(searchForm[item.value])">
+					<el-option v-for=" childItem in item.options" :label="childItem[item.props.label]"
 						:value="childItem[item.props.value]" :key="childItem[item.props.value]" />
 				</el-select>
 				<!-- 三级联动 cascader -->
-				<el-cascader v-if="item.type === 'Cascader'" :options="item.props.options" v-model="searchForm[item.value]"
-					:placeholder="item.placeholder ||'请选择'+item.label" :disabled="item.disabled || false" style="width: 100%;"
-					:props="item.props" @change="item.change &&item.change(searchForm[item.value])" />
+				<el-cascader v-if="item.type === 'Cascader'" :options="item.options" v-model="searchForm[item.value]"
+					:placeholder="item.placeholder ||'请选择'+item.label" :props="item.props"
+					@change="item.change &&item.change(searchForm[item.value])" v-bind="item.attr" />
 				<!-- 单选 -->
-				<el-radio-group v-if="item.type === 'Radio'" v-model="searchForm[item.value]">
-					<el-radio v-for="childItem in item.options" :label="childItem[item.props.label]"
-						:value="childItem[item.props.value]" :key="childItem[item.props.value]"
-						:disabled="item.disabled || false" />
-				</el-radio-group>
-				<!-- 组合单选按钮 -->
-				<el-radio-group v-if="item.type === 'RadioButton'" v-model="searchForm[item.value]"
-					@change="item.change && item.change(searchForm[item.value])">
-					<el-radio-button v-for="childItem in item.options" :label="childItem[item.props.label]"
-						:value="childItem[item.props.value]" :key="childItem[item.props.value]"
-						:disabled="item.disabled || false" />
+				<el-radio-group v-if="item.type === 'Radio'" v-model="searchForm[item.value]"
+					@change="item.change &&item.change(searchForm[item.value])">
+					<el-radio v-for="childItem in item.options" :label="childItem[item.props.value]"
+						:key="childItem[item.props.value]" v-bind="item.attr">
+						{{childItem[item.props.label]}}
+					</el-radio>
 				</el-radio-group>
 				<!-- 复选框 -->
-				<el-checkbox-group v-if="item.type === 'Checkbox'" v-model="searchForm[item.value]">
-					<el-checkbox v-for="childItem in item.options" :label="childItem[item.props.label]"
-						:value="childItem[item.props.value]" :key="childItem[item.props.value]"
-						:disabled="item.disabled || false" />
+				<el-checkbox-group v-if="item.type === 'Checkbox'" v-model="searchForm[item.value]"
+					@change="item.change &&item.change(searchForm[item.value])">
+					<el-checkbox v-for="childItem in item.options" :key="childItem[item.props.value]"
+						:label="childItem[item.props.value]" v-bind="item.attr">{{childItem[item.props.label]}}
+					</el-checkbox>
 				</el-checkbox-group>
+				<!-- Year -->
+				<el-date-picker v-if="item.type === 'Year'" type="year" v-model="searchForm[item.value]" value-format="yyyy"
+					format="yyyy" @change="item.change && item.change(searchForm[item.value])"
+					:placeholder="item.placeholder||'请选择'+item.label" v-bind="item.attr" />
+				<!-- YearMonth -->
+				<el-date-picker v-if="item.type === 'YearMonth'" type="month" v-model="searchForm[item.value]"
+					value-format="yyyy-MM" format="yyyy-MM" @change="item.change && item.change(searchForm[item.value])"
+					:placeholder="item.placeholder||'请选择'+item.label" v-bind="item.attr" />
 				<!-- 日期 -->
 				<el-date-picker v-if="item.type === 'Date'" v-model="searchForm[item.value]" value-format="yyyy-MM-dd"
-					:disabled="item.disabled || false" @change="item.change &&item.change(searchForm[item.value])"
-					:placeholder="item.placeholder||'请选择'+item.label" />
+					format="yyyy-MM-dd" @change="item.change && item.change(searchForm[item.value])"
+					:placeholder="item.placeholder||'请选择'+item.label" v-bind="item.attr" />
 				<!-- 日期时间 -->
 				<el-date-picker v-if="item.type === 'DateTime'" type="datetime" v-model="searchForm[item.value]"
 					:placeholder="item.placeholder||'请选择'+item.label" value-format="yyyy-MM-dd hh:mm:ss"
-					:disabled="item.disabled || false" @change="item.change &&item.change(searchForm[item.value])" />
-				<!-- 时间 -->
-				<el-time-select v-if="item.type === 'Time'" v-model="searchForm[item.value]"
-					:placeholder="item.placeholder||'请选择'+item.label" :disabled="item.disabled || false"
-					@change="item.change &&item.change(searchForm[item.value])" />
+					@change="item.change && item.change(searchForm[item.value])" v-bind="item.attr" />
 				<!-- 起止时间 -->
 				<el-date-picker v-if="item.type === 'DateRange'" v-model="searchForm[item.value]" type="daterange"
 					start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd"
-					@change="item.change &&item.change(searchForm[item.value])" :disabled="item.disabled || false" />
-				<!-- 滑块 -->
-				<el-slider v-if="item.type === 'Slider'" v-model="searchForm[item.value]" :disabled="item.disabled || false"
-					@change="item.change &&item.change(searchForm[item.value])" />
+					@change="item.change && item.change(searchForm[item.value])" v-bind="item.attr" />
 				<!-- 开关 -->
-				<el-switch v-if="item.type === 'Switch'" v-model="searchForm[item.value]" :disabled="item.disabled || false"
-					@change="item.change &&item.change(searchForm[item.value])" />
+				<el-switch v-if="item.type === 'Switch'" v-model="searchForm[item.value]"
+					@change="item.change && item.change(searchForm[item.value])" v-bind="item.attr" />
 			</el-form-item>
 			<el-form-item v-for="(item, index) in searchFormBtn" :key="index+'searchFormBtn'">
 				<el-button v-show="f_show(item.showBtn)" @click="f_clickBtn(item.methods,item.option)" type="primary">
