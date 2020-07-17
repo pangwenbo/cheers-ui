@@ -8,8 +8,9 @@
 			<ul class="image-list">
 				<template v-for="(file, index) in fileList">
 					<li :style="imageThumbStyle" :key="index" v-if="fileList.length > 0">
+						<close-btn class="deleBtn" @click.native="fileList.splice(index, 1)"></close-btn>
+
 						<image-cover :thumb="file" :previewFile='previewFile'></image-cover>
-						<close-btn class="delete-btn" @click.native="fileList.splice(index, 1)"></close-btn>
 					</li>
 				</template>
 				<li class="flex-row flex-middle upload-image-button" v-if="fileList.length < multi">
