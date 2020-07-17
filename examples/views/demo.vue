@@ -3,7 +3,16 @@
 		<cheers-table :tableHeight="tableHeight" :tableData="tableData" :tableHead="tableHead" :selectionShow="true"
 			:expandShow="true" :showSummary="true" :expandList="expandList" :addBtnList="addBtnList"
 			@f_listenCall="f_listenCall" @f_handleSelectionChange="f_handleSelectionChange"></cheers-table>
+
+		<cheers-upload-file @readyUpload="f_uploadLoading" :fileUpload='fileUpload' @overUpload="f_loadingOver"
+			:dataFile="fileListName" :dataFileNum="fileNum"></cheers-upload-file>
+
+		<cheers-upload-image :uploadUrl='fileUpload' :text='text' v-model="pic" :isCropper="true" :multi="2"
+			:maxSize="10240" :width="150" :height="150">
+		</cheers-upload-image>
+
 	</div>
+
 </template>
 <script>
 export default {
@@ -13,7 +22,13 @@ export default {
 			tableHead: [], // 表头数据
 			tableData: [], // 表格数据
 			addBtnList: {}, // 操作列数据
-			expandList: [] //扩展列数据
+			expandList: [], //扩展列数据
+			fileListName: [],
+			pic: "",
+			loading: false,
+			fileNum: 8,
+			fileUpload: "http://*",
+			text: "备注"
 		};
 	},
 	mounted() {
@@ -125,7 +140,15 @@ export default {
 		//测试自定义渲染button的click事件
 		f_alert(data) {
 			alert(data);
-		}
+		},
+		f_uploadLoading(isLoading) {
+			this.loading = isLoading;
+		},
+		f_loadingOver(isLoading, fileListName) {
+			console.log(isLoading, fileListName, "文件上传组件00000---");
+			this.loading = isLoading;
+			this.fileListName = fileListName;
+		},
 	},
 	filters: {
 		money(val) {
