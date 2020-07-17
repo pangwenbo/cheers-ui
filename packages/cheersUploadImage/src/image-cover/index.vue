@@ -52,7 +52,7 @@ export default {
 			};
 		},
 		thumbSrc() {
-			return this.$previewFile + this.thumb;
+			return this.previewFile + this.thumb;
 		},
 		imageStyle() {
 			const classes = `${this.styleType} ${this.sizeType}-size`;
