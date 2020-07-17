@@ -2,7 +2,7 @@
 	<el-form :inline="inline" :model="ruleForm" :rules="rules" ref="ruleForm" :label-width="labelWidth">
 		<el-row v-for="(row,index) in fieldList" :key="index+'row'">
 			<el-col v-for="(col,index) in row.row" :key="index+'col'" :span="col.col">
-				<cheerFormTitle :bdcolor="bdcolor">{{col.title}}</cheerFormTitle>
+				<cheerFormTitle :bdcolor="bdcolor" v-if="col.title">{{col.title}}</cheerFormTitle>
 				<el-form-item v-for="item in col.list" :label="item.label" :key="item.value" :value="item.value"
 					:prop="item.value">
 					<!-- solt -->
@@ -16,7 +16,7 @@
 					<!--下拉框  $forceUpdate() 下拉刷新,修复数据改变下拉框不变的bug -->
 					<el-select v-if="item.type === 'Select'" v-model="ruleForm[item.value]" @visible-change="$forceUpdate()"
 						:disabled="item.disabled || false" :placeholder=" item.placeholder||'请选择'+item.label"
-						@change="item.change(ruleForm[item.value])">
+						@change="item.change && item.change(ruleForm[item.value])">
 						<el-option v-for=" childItem in item.options" :label="childItem[item.props.label]"
 							:value="childItem[item.props.value]" :key="childItem[item.props.value]" />
 					</el-select>
@@ -43,21 +43,30 @@
 							:value="childItem[item.props.value]" :key="childItem[item.props.value]"
 							:disabled="item.disabled || false" />
 					</el-checkbox-group>
+					<!-- Year -->
+					<el-date-picker v-if="item.type === 'Year'" v-model="ruleForm[item.value]" format="yyyy"
+						:disabled="item.disabled || false" @change="item.change && item.change(ruleForm[item.value])"
+						:placeholder="item.placeholder||'请选择'+item.label" />
+					<!-- YearMonth -->
+					<el-date-picker v-if="item.type === 'YearMonth'" v-model="ruleForm[item.value]" format="yyyy-MM"
+						:disabled="item.disabled || false" @change="item.change && item.change(ruleForm[item.value])"
+						:placeholder="item.placeholder||'请选择'+item.label" />
 					<!-- 日期 -->
 					<el-date-picker v-if="item.type === 'Date'" v-model="ruleForm[item.value]" format="yyyy-MM-dd"
-						:disabled="item.disabled || false" @change="item.change(ruleForm[item.value])"
+						:disabled="item.disabled || false" @change="item.change && item.change(ruleForm[item.value])"
 						:placeholder="item.placeholder||'请选择'+item.label" />
 					<!-- 日期时间 -->
 					<el-date-picker v-if="item.type === 'DateTime'" type="datetime" v-model="ruleForm[item.value]"
 						:placeholder="item.placeholder||'请选择'+item.label" format="yyyy-MM-dd hh:mm:ss"
-						:disabled="item.disabled || false" @change="item.change(ruleForm[item.value])" />
+						:disabled="item.disabled || false" @change="item.change && item.change(ruleForm[item.value])" />
 					<!-- 时间 -->
 					<el-time-select v-if="item.type === 'Time'" v-model="ruleForm[item.value]"
-						:placeholder="item.placeholder||'请选择'+item.label" :disabled="item.disabled || false" />
+						:placeholder="item.placeholder||'请选择'+item.label" :disabled="item.disabled || false"
+						@change="item.change && item.change(ruleForm[item.value])" />
 					<!-- 起止时间 -->
 					<el-date-picker v-if="item.type === 'DateRange'" v-model="ruleForm[item.value]" type="daterange"
 						start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd"
-						@change="item.change(ruleForm[item.value])" :disabled="item.disabled || false" />
+						@change="item.change && item.change(ruleForm[item.value])" :disabled="item.disabled || false" />
 					<!-- 滑块 -->
 					<el-slider v-if="item.type === 'Slider'" v-model="ruleForm[item.value]" :disabled="item.disabled || false" />
 					<!-- 开关 -->
