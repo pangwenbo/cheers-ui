@@ -8,7 +8,7 @@
 			<ul class="image-list">
 				<template v-for="(file, index) in fileList">
 					<li :style="imageThumbStyle" :key="index" v-if="fileList.length > 0">
-						<image-cover :thumb="file"></image-cover>
+						<image-cover :thumb="file" :previewFile='previewFile'></image-cover>
 						<close-btn class="delete-btn" @click.native="fileList.splice(index, 1)"></close-btn>
 					</li>
 				</template>
@@ -58,6 +58,11 @@ export default {
 		isCropper: {
 			type: Boolean,
 			default: true
+		},
+		previewFile: {
+			type: String,
+			default: () => ''
+
 		},
 		// 文字备注
 		text: {
@@ -230,139 +235,7 @@ export default {
 	}
 };
 </script>
-<style>
-.upload-button > * {
-	pointer-events: none;
-}
-
-.upload-button {
-	display: block;
-	width: 300px;
-	min-height: 150px;
-	margin: 10px auto auto auto;
-	padding: 10px auto;
-	border-radius: 10px;
-	border: 2px dashed #ddd;
-	overflow: hidden;
-	cursor: pointer;
-}
-
-.upload-button span {
-	display: block;
-	width: 50px;
-	height: 50px;
-	border-radius: 100%;
-	border: 3px solid #0983c7;
-	margin: 30px auto 15px;
-	position: relative;
-}
-
-.upload-button em {
-	font-style: normal;
-	text-align: center;
-	display: block;
-}
-
-.upload-button span:before,
-.upload-button span:after {
-	display: block;
-	content: "";
-	background-color: #0983c7;
-	position: absolute;
-}
-
-.upload-button span:before {
-	width: 3px;
-	height: 30px;
-	top: 10px;
-	left: 24px;
-}
-
-.upload-button span:after {
-	width: 30px;
-	height: 3px;
-	top: 24px;
-	left: 10px;
-}
-
-.audio-preview {
-	width: 100%;
-	position: relative;
-}
-
-.video-preview {
-	width: 100%;
-	position: relative;
-}
-
-.image-cropper {
-	position: relative;
-}
-
-.cropper-buttons {
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background-color: rgba(255, 255, 255, 0.6);
-}
-
-.btn {
-	padding: 10px;
-}
-
-.btn-primary {
-	background-color: rgba(235, 97, 0, 0.8);
-	color: #fff;
-}
-
-/* 多图上传相关 */
-.image-preview {
-	position: relative;
-}
-
-.image-list {
-	list-style: none;
-	display: inline-block;
-	margin: 0;
-	padding: 0;
-}
-
-.image-list li {
-	float: left;
-	border: 1px solid #e8f5ff;
-	position: relative;
-	text-align: center;
-	margin-right: 5px;
-}
-
-.upload-image-button {
-	width: 75px;
-	height: 75px;
-	position: relative;
-	border: 2px dashed #ddd !important;
-	box-sizing: border-box;
-}
-
-.plus {
-	font-size: 50px;
-	color: #0983c7;
-	line-height: 64px;
-	margin-bottom: 15px;
-	font-weight: 300;
-	text-align: center;
-	cursor: pointer;
-	/* margin-left: 15px; */
-}
-
-.delete-btn {
-	top: -8px;
-	right: -5px;
-	position: absolute !important;
-	cursor: pointer;
-}
-.img-font {
-	font-size: 12px;
-	color: #666;
-}
+<style scoped>
+@import "./css/index.less";
 </style>
+

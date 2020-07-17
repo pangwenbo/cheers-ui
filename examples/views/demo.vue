@@ -7,8 +7,8 @@
 		<cheers-upload-file @readyUpload="f_uploadLoading" :fileUpload='fileUpload' @overUpload="f_loadingOver"
 			:dataFile="fileListName" :dataFileNum="fileNum"></cheers-upload-file>
 
-		<cheers-upload-image :uploadUrl='fileUpload' :text='text' v-model="pic" :isCropper="true" :multi="2"
-			:maxSize="10240" :width="150" :height="150">
+		<cheers-upload-image :previewFile='previewFile' :uploadUrl='fileUpload' :text='text' v-model="pic" :isCropper="true"
+			:multi="2" :maxSize="10240" :width="150" :height="150">
 		</cheers-upload-image>
 
 	</div>
@@ -28,7 +28,8 @@ export default {
 			loading: false,
 			fileNum: 8,
 			fileUpload: "http://*",
-			text: "备注"
+			text: "备注",
+			previewFile: ""
 		};
 	},
 	mounted() {
