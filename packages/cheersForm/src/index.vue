@@ -44,20 +44,20 @@
 							:disabled="item.disabled || false" />
 					</el-checkbox-group>
 					<!-- Year -->
-					<el-date-picker v-if="item.type === 'Year'" v-model="ruleForm[item.value]" format="yyyy"
+					<el-date-picker v-if="item.type === 'Year'" v-model="ruleForm[item.value]" value-format="yyyy"
 						:disabled="item.disabled || false" @change="item.change && item.change(ruleForm[item.value])"
 						:placeholder="item.placeholder||'请选择'+item.label" />
 					<!-- YearMonth -->
-					<el-date-picker v-if="item.type === 'YearMonth'" v-model="ruleForm[item.value]" format="yyyy-MM"
+					<el-date-picker v-if="item.type === 'YearMonth'" v-model="ruleForm[item.value]" value-format="yyyy-MM"
 						:disabled="item.disabled || false" @change="item.change && item.change(ruleForm[item.value])"
 						:placeholder="item.placeholder||'请选择'+item.label" />
 					<!-- 日期 -->
-					<el-date-picker v-if="item.type === 'Date'" v-model="ruleForm[item.value]" format="yyyy-MM-dd"
+					<el-date-picker v-if="item.type === 'Date'" v-model="ruleForm[item.value]" value-format="yyyy-MM-dd"
 						:disabled="item.disabled || false" @change="item.change && item.change(ruleForm[item.value])"
 						:placeholder="item.placeholder||'请选择'+item.label" />
 					<!-- 日期时间 -->
 					<el-date-picker v-if="item.type === 'DateTime'" type="datetime" v-model="ruleForm[item.value]"
-						:placeholder="item.placeholder||'请选择'+item.label" format="yyyy-MM-dd hh:mm:ss"
+						:placeholder="item.placeholder||'请选择'+item.label" value-format="yyyy-MM-dd hh:mm:ss"
 						:disabled="item.disabled || false" @change="item.change && item.change(ruleForm[item.value])" />
 					<!-- 时间 -->
 					<el-time-select v-if="item.type === 'Time'" v-model="ruleForm[item.value]"
