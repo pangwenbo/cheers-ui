@@ -44,11 +44,11 @@
 							:disabled="item.disabled || false" />
 					</el-checkbox-group>
 					<!-- Year -->
-					<el-date-picker v-if="item.type === 'Year'" v-model="ruleForm[item.value]" value-format="yyyy"
+					<el-date-picker v-if="item.type === 'Year'" type="year" v-model="ruleForm[item.value]"
 						:disabled="item.disabled || false" @change="item.change && item.change(ruleForm[item.value])"
 						:placeholder="item.placeholder||'请选择'+item.label" />
 					<!-- YearMonth -->
-					<el-date-picker v-if="item.type === 'YearMonth'" v-model="ruleForm[item.value]" value-format="yyyy-MM"
+					<el-date-picker v-if="item.type === 'YearMonth'" type="month" v-model="ruleForm[item.value]"
 						:disabled="item.disabled || false" @change="item.change && item.change(ruleForm[item.value])"
 						:placeholder="item.placeholder||'请选择'+item.label" />
 					<!-- 日期 -->
