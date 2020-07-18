@@ -1,7 +1,7 @@
 <template>
 	<div class="tables">
-		<el-table :data="tableData" :stripe="true" border @selection-change="f_handleSelectionChange" :height="tableHeight"
-			:show-summary="showSummary">
+		<el-table :data="tableData" :stripe="stripe||true" :border="border||true"
+			@selection-change="f_handleSelectionChange" :height="tableHeight" :show-summary="showSummary">
 			<!--多选列-->
 			<el-table-column v-if="selectionShow" type="selection" width="50" align="center" highlight-current-row>
 			</el-table-column>
@@ -33,7 +33,7 @@
 					fixed: false, // 列是否固定，默认false
 					sortable: true //是否开启排序默，认false
 			},-->
-			<div v-for="(item, index) in tableHead" :key="index+'tableHead'">
+			<div v-for="(item, index) in tableHead" :key="index+'tableHead'" v-show="f_show(item.showRow)">
 				<!-- 默认 -->
 				<el-table-column v-if="!item.render" :label="item.label" :prop="item.prop" :width="item.width"
 					:header-align="item.headerAlign||'center'" :align="item.align||'center'" :fixed="item.fixed||false"
@@ -48,7 +48,7 @@
 				</el-table-column>
 			</div>
 			<!--操作列-->
-			<el-table-column align="center" v-if="buttonListShow" :fixed="addBtnList.fixed" :label="addBtnList.label"
+			<el-table-column v-if="addBtnList" align="center" :fixed="addBtnList.fixed" :label="addBtnList.label"
 				:min-width="addBtnList.width">
 				<!-- f_show按钮权限控制 -->
 				<template slot-scope="scope">
@@ -91,6 +91,21 @@ export default {
 		}
 	},
 	props: {
+		searchFrom: {
+			//搜索bar，有时候需要根据这个显示和隐藏列
+			type: Object,
+			default: () => { }
+		},
+		border: {
+			// 表格边框
+			type: Boolean,
+			default: true
+		},
+		stripe: {
+			// 是否开启斑马纹
+			type: Boolean,
+			default: true
+		},
 		initListPermission: {
 			// 权限信息
 			type: Object,

@@ -5,7 +5,7 @@
 				<cheers-form-title :bdcolor="bdcolor" v-if="col.title">{{col.title}}</cheers-form-title>
 				<template v-for="item in col.list">
 					<el-form-item v-if="f_show(item.flag||true)" :key="item.value" :label="item.label" :value="item.value"
-						:prop="item.value" :rules="item.rules">
+						:prop="item.value" :rules="item.rules" :labelWidth="item.labelWidth">
 						<!-- solt -->
 						<template v-if="item.type === 'slot'">
 							<slot :name="'form-' + item.solt" />
@@ -119,6 +119,9 @@ export default {
 		}
 	},
 	methods: {
+		f_show(flag) {
+			return eval(flag);
+		},
 		// 操作列 按钮方法
 		f_clickBtn(methodsWords, option) {
 			this.$emit("f_listenBtn", methodsWords, option);
