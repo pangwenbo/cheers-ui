@@ -33,7 +33,7 @@
 					fixed: false, // 列是否固定，默认false
 					sortable: true //是否开启排序默，认false
 			},-->
-			<div v-for="(item, index) in tableHead" :key="index+'tableHead'" v-show="f_show(item.showRow)">
+			<div v-for="(item, index) in tableHead" :key="index+'tableHead'" v-show="f_show(item.showRow||true)">
 				<!-- 默认 -->
 				<el-table-column v-if="!item.render" :label="item.label" :prop="item.prop" :width="item.width"
 					:header-align="item.headerAlign||'center'" :align="item.align||'center'" :fixed="item.fixed||false"
@@ -53,7 +53,7 @@
 				<!-- f_show按钮权限控制 -->
 				<template slot-scope="scope">
 					<el-button v-for="(item,index) in addBtnList.list" :key="index+'addBtnList'"
-						v-show="f_show(item.showBtn,scope)" @click="f_clickBtn(item.methods,scope,item.option)" type="text"
+						v-show="f_show(item.showBtn||true,scope)" @click="f_clickBtn(item.methods,scope,item.option)" type="text"
 						:title="item.title">
 						<i :class="item.icon"></i>
 						<span>{{item.title}}</span>
