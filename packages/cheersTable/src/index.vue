@@ -8,7 +8,7 @@
 
 			<!--自定义添加排序列-->
 			<!-- <el-table-column type="index" width="50"></el-table-column> -->
-			<el-table-column v-if="indexShow" align="center" :label="indexLabel" :width="indexWidth">
+			<el-table-column v-if="indexShow" :key="0" align="center" :label="indexLabel" :width="indexWidth">
 				<template slot-scope="scope">
 					<span>{{scope.$index + 1}}</span>
 				</template>
@@ -35,11 +35,11 @@
 			},-->
 			<div v-for="(item, index) in tableHead" :key="index+'tableHead'" v-show="f_show(item.showRow||true)">
 				<!-- 默认 -->
-				<el-table-column v-if="!item.render" :label="item.label" :prop="item.prop" :width="item.width"
+				<el-table-column :key="index+1" v-if="!item.render" :label="item.label" :prop="item.prop" :width="item.width"
 					:header-align="item.headerAlign||'center'" :align="item.align||'center'" :fixed="item.fixed||false"
 					:sortable="item.sortable||false" :show-overflow-tooltip="true"></el-table-column>
 				<!-- 自定义渲染组件或者html元素 -->
-				<el-table-column v-else :label="item.label" :prop="item.prop" :width="item.width"
+				<el-table-column :key="index+1" v-else :label="item.label" :prop="item.prop" :width="item.width"
 					:header-align="item.headerAlign||'center'" :align="item.align||'center'" :fixed="item.fixed||false"
 					:sortable="item.sortable||false" :show-overflow-tooltip="true">
 					<template slot-scope="scope">
