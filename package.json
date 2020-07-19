@@ -1,6 +1,6 @@
 {
   "name": "cheers-ui",
-  "version": "0.3.3",
+  "version": "0.3.8",
   "private": false,
   "main": "lib/index/index.js",
   "keyword": "cheers-ui",
@@ -8,7 +8,10 @@
   "author": "庞文博、钱华",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "deploy": "bash deploy.sh"
   },
   "dependencies": {
     "core-js": "^2.6.5",

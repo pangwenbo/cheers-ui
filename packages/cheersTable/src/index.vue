@@ -3,19 +3,19 @@
 		<el-table :data="tableData" :stripe="stripe||true" :border="border||true"
 			@selection-change="f_handleSelectionChange" :height="tableHeight" :show-summary="showSummary">
 			<!--多选列-->
-			<el-table-column v-if="selectionShow" type="selection" width="50" align="center" highlight-current-row>
+			<el-table-column v-if="selectionShow" :key="1" type="selection" width="50" align="center" highlight-current-row>
 			</el-table-column>
 
 			<!--自定义添加排序列-->
 			<!-- <el-table-column type="index" width="50"></el-table-column> -->
-			<el-table-column v-if="indexShow" :key="0" align="center" :label="indexLabel" :width="indexWidth">
+			<el-table-column v-if="indexShow" :key="2" align="center" :label="indexLabel" :width="indexWidth">
 				<template slot-scope="scope">
 					<span>{{scope.$index + 1}}</span>
 				</template>
 			</el-table-column>
 
 			<!--自定义添加扩展列-->
-			<el-table-column type="expand" v-if="expandShow">
+			<el-table-column type="expand" v-if="expandShow" :key="3">
 				<template slot-scope="scope">
 					<template v-for="(item,index) in expandList">
 						<row :key="index+'expandList'" :row="scope.row" :col="item" :render="item.render" :col-index="index" />
@@ -33,23 +33,23 @@
 					fixed: false, // 列是否固定，默认false
 					sortable: true //是否开启排序默，认false
 			},-->
-			<div v-for="(item, index) in tableHead" :key="index+'tableHead'" v-show="f_show(item.showRow||true)">
+			<template v-for="(item, index) in tableHead" v-show="f_show(item.showRow||true)">
 				<!-- 默认 -->
-				<el-table-column :key="index+1" v-if="!item.render" :label="item.label" :prop="item.prop" :width="item.width"
-					:header-align="item.headerAlign||'center'" :align="item.align||'center'" :fixed="item.fixed||false"
-					:sortable="item.sortable||false" :show-overflow-tooltip="true"></el-table-column>
+				<el-table-column :key="index+'tableHead'" v-if="!item.render" :label="item.label" :prop="item.prop"
+					:width="item.width" :header-align="item.headerAlign||'center'" :align="item.align||'center'"
+					:fixed="item.fixed||false" :sortable="item.sortable||false" :show-overflow-tooltip="true"></el-table-column>
 				<!-- 自定义渲染组件或者html元素 -->
-				<el-table-column :key="index+1" v-else :label="item.label" :prop="item.prop" :width="item.width"
+				<el-table-column :key="index+'tableHead'" v-else :label="item.label" :prop="item.prop" :width="item.width"
 					:header-align="item.headerAlign||'center'" :align="item.align||'center'" :fixed="item.fixed||false"
 					:sortable="item.sortable||false" :show-overflow-tooltip="true">
 					<template slot-scope="scope">
 						<row :row="scope.row" :col="item" :render="item.render" :col-index="index" />
 					</template>
 				</el-table-column>
-			</div>
+			</template>
 			<!--操作列-->
 			<el-table-column v-if="addBtnList" align="center" :fixed="addBtnList.fixed" :label="addBtnList.label"
-				:min-width="addBtnList.width">
+				:min-width="addBtnList.width" :key="1000">
 				<!-- f_show按钮权限控制 -->
 				<template slot-scope="scope">
 					<el-button v-for="(item,index) in addBtnList.list" :key="index+'addBtnList'"
