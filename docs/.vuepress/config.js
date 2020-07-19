@@ -1,4 +1,5 @@
 module.exports = {
+        base: "/cheers-ui/",
         title: "cheers-ui",
         description: 'cheers-ui使用文档',
         markdown: {
@@ -26,14 +27,14 @@ module.exports = {
                         },
                         {
                                 text: '文档',
-                                link: '/cheers-ui/'
+                                link: '/cheers-ui'
                         },
                         {
                                 text: 'github',
                                 link: 'https://github.com/pangwenbo/cheers-ui'
                         },
                 ],
-                sidebar: ['cheers-form', 'cheers-table'],
+                sidebar: ['/cheers-form', '/cheers-table'],
                 lastUpdated: '更新时间',
         }
 }
