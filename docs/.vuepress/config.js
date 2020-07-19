@@ -30,6 +30,10 @@ module.exports = {
                                 link: '/cheers-ui'
                         },
                         {
+                                text: '赞助',
+                                link: '/zanzhu'
+                        },
+                        {
                                 text: 'github',
                                 link: 'https://github.com/pangwenbo/cheers-ui'
                         },
