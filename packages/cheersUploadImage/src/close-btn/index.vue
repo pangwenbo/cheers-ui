@@ -13,7 +13,6 @@ export default {
 	components: {}
 };
 </script>
-<style scope>
+<style scoped>
 @import "../css/index.less";
 </style>
-	

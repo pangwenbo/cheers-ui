@@ -27,9 +27,9 @@ export default {
 			pic: "",
 			loading: false,
 			fileNum: 8,
-			fileUpload: "http://*",
+			fileUpload: "http://39.106.141.151:20000/api/file/files/local/upload",
 			text: "备注",
-			previewFile: ""
+			previewFile: "http://39.106.141.151:20000/api/file/files/"
 		};
 	},
 	mounted() {
