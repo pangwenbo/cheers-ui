@@ -38,7 +38,7 @@ module.exports = {
                                 link: 'https://github.com/pangwenbo/cheers-ui'
                         },
                 ],
-                sidebar: ['/cheers-form', '/cheers-table'],
+                sidebar: ['/cheers-ui', '/cheers-form', '/cheers-table', '/cheers-paginations', '/cheers-search-bar'],
                 lastUpdated: '更新时间',
         }
 }

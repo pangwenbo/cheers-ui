@@ -2,5 +2,5 @@
 sidebar: auto
 title: false
 ---
-## cheersFrom 表单
+## cheersPaginations 分页
 ### 二级标题
