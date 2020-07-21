@@ -16,6 +16,7 @@ title: false
 | 参数      | 说明          | 类型       | 默认值  |
 |---------- |-------------- |---------- |--------------------------------  |-------- |
 | Input | 输入框 | String | — | 
+| Textarea | 文本域 | String | — | 
 | Input | 数字 | String | — | 
 | Password | 密码框 | String | — | 
 | Select | 下拉框 | String | — | 
@@ -29,7 +30,15 @@ title: false
 ### Input 输入框
 ```js
 {
-        type: "Input", label: "输入框", value: "input",attr: { step: 5 },
+        type: "Input", label: "输入框", value: "input",
+        // 表单验证
+        rules: [{ required: true, message: "请输入姓名", trigger: "blur" }]
+},
+```
+### Textarea 文本域
+```js
+{
+        type: "Textarea", label: "文本域", value: "textarea",
         // 表单验证
         rules: [{ required: true, message: "请输入姓名", trigger: "blur" }]
 },

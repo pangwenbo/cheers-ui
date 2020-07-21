@@ -13,6 +13,10 @@
 						<!-- 输入框-->
 						<el-input v-if="item.type==='Input'" v-model="ruleForm[item.value]"
 							:placeholder="item.placeholder||'请输入'+item.label" v-bind="item.attr" />
+						<!-- 文本域-->
+						<el-input v-if="item.type==='Textarea'" type="textarea" v-model="ruleForm[item.value]"
+							:placeholder="item.placeholder||'请输入'+item.label" v-bind="item.attr">
+						</el-input>
 						<!-- 密码框 -->
 						<el-input v-if="item.type === 'Password'" v-model="ruleForm[item.value]"
 							:show-password="item.type === 'Password'" :placeholder="item.placeholder||'请输入'+item.label"

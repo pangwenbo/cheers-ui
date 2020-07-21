@@ -6,32 +6,22 @@ module.exports = {
     lineNumbers: true,
   },
   head: [
-    [
-      "link",
-      {
-        rel: "icon",
-        href: "/assets/img/logo.png",
-      },
-    ],
-    [
-      "meta",
-      {
-        name: "keywords",
-        content: "cheers-ui使用文档",
-      },
-    ],
-    [
-      "meta",
-      {
-        name: "author",
-        content: "庞文博、钱华",
-      },
-    ],
+    ["link", {
+      rel: "icon",
+      href: "/assets/img/logo.png"
+    }],
+    ["meta", {
+      name: "keywords",
+      content: "cheers-ui使用文档",
+    }],
+    ["meta", {
+      name: "author",
+      content: "庞文博、钱华",
+    }]
   ],
   logo: "/assets/img/logo.png",
   themeConfig: {
-    nav: [
-      {
+    nav: [{
         text: "首页",
         link: "/",
       },
