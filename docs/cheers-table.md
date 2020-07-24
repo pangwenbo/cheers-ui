@@ -33,8 +33,8 @@ title: false
 | label | 表头名字 | — | string |
 | prop | 表头字段名 | — | string |
 | width | 列宽 | auto | number |
-| align | 内容对齐方式 | cenrter | string |
-| headerAlign | 表头对齐方式 | cenrter | string |
+| align | 内容对齐方式 | center | string |
+| headerAlign | 表头对齐方式 | center | string |
 | fixed | 列是否固定 | false | boolean |
 | sortable | 是否开启排序 | false | boolean |
 | render | 开启自定义渲染 | function | function |

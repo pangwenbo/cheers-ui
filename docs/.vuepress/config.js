@@ -16,7 +16,7 @@ module.exports = {
     }],
     ["meta", {
       name: "author",
-      content: "庞文博、钱华",
+      content: "庞文博、钱华、张亚斐",
     }]
   ],
   logo: "/assets/img/logo.png",
@@ -33,6 +33,11 @@ module.exports = {
         text: "赞助",
         link: "/zanzhu",
       },
+      {
+        text: "建议",
+        link: "/jy",
+      },
+
       {
         text: "github",
         link: "https://github.com/pangwenbo/cheers-ui",

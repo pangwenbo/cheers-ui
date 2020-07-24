@@ -1,7 +1,8 @@
 <template>
 	<div class="tables">
-		<el-table :data="tableData" :stripe="stripe||true" :border="border||true"
-			@selection-change="f_handleSelectionChange" :height="tableHeight" :show-summary="showSummary">
+		<el-table :data="tableData" :stripe="stripe||true" :border="border||true" tooltip-effect="light"
+			@selection-change="f_handleSelectionChange" :height="tableHeight" :show-summary="showSummary"
+			:header-cell-style="{'background-color': '#F5F7FA',  'color': '#000',}">
 			<!--多选列-->
 			<el-table-column v-if="selectionShow" :key="1" type="selection" width="50" align="center" highlight-current-row>
 			</el-table-column>

@@ -12,5 +12,5 @@ features:
   details: 享受全部代码在js美感，整整齐齐。
 - title: all in jsx
   details: react一样的骚操作。
-footer: 庞文博 钱华
+footer: 庞文博 钱华 张亚斐
 ---
