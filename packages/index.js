@@ -6,6 +6,7 @@ import cheersCard from "./cheersCard";
 import cheersPaginations from "./cheersPaginations";
 import cheersUploadFile from "./cheersUploadFile";
 import cheersUploadImage from "./cheersUploadImage";
+import cheersDynamicTable from "./cheersDynamicTable";
 
 import testB from "./testB";
 import Vue from "vue";
@@ -23,7 +24,7 @@ export default {
     Vue.use(cheersPaginations);
     Vue.use(cheersUploadFile);
     Vue.use(cheersUploadImage);
-
+    Vue.use(cheersDynamicTable);
     Vue.use(testB);
   },
 };

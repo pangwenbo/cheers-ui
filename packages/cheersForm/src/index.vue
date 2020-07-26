@@ -11,6 +11,38 @@
 						<template v-if="item.type === 'slot'">
 							<slot :name="'form-' + item.solt" />
 						</template>
+						<div v-if="item.type === 'Dynamic'">
+							<table id="info" border="">
+								<tr class="title">
+									<td v-for="dynamicItems in item.tableHead" :key="dynamicItems.label">{{dynamicItems.label}}</td>
+									<td class="handle_">操作</td>
+								</tr>
+								<tr class="wraps_" v-for="(row, indexs) in ruleForm[item.value]" :key="row.indexs">
+									<td v-for="(dynamicItem,ids) in item.formItem" :key="ids+dynamicItem">
+										<el-form-item :prop="item.value+'.' + indexs + '.'+dynamicItem.value" :rules="dynamicItem.rules">
+											<el-input v-if="dynamicItem.type==='Input'"
+												v-model="ruleForm[item.value][indexs][dynamicItem.value]" style="border:none"
+												v-bind="dynamicItem.attr" />
+											<el-select v-if="dynamicItem.type === 'Select'"
+												v-model="ruleForm[item.value][indexs][dynamicItem.value]" @visible-change="$forceUpdate()"
+												v-bind="dynamicItem.attr"
+												@change="dynamicItem.change && dynamicItem.change(ruleForm[item.value][indexs][dynamicItem.value])">
+												<el-option v-for=" childItem in dynamicItem.options" :label="childItem[dynamicItem.props.label]"
+													:value="childItem[dynamicItem.props.value]" :key="childItem[dynamicItem.props.value]" />
+											</el-select>
+										</el-form-item>
+									</td>
+									<td>
+										<el-button type="text" @click.prevent="removerow(indexs,item.value)">删除</el-button>
+									</td>
+								</tr>
+								<tr class="wraps_">
+									<td :colspan="item.tableHead.length+1" @click="addrow(item.value)">
+										<el-button type="text">增加一行</el-button>
+									</td>
+								</tr>
+							</table>
+						</div>
 						<!-- 输入框-->
 						<el-input v-if="item.type==='Input'" v-model="ruleForm[item.value]"
 							:placeholder="item.placeholder||'请输入'+item.label" v-bind="item.attr" />
@@ -124,6 +156,12 @@ export default {
 		}
 	},
 	methods: {
+		removerow(index, value) {
+			this.ruleForm[value].splice(index, 1);
+		},
+		addrow(value) {
+			this.ruleForm[value].push({});
+		},
 		f_show(flag) {
 			return eval(flag);
 		},
@@ -142,3 +180,30 @@ export default {
 	},
 };
 </script>
+<style lang="scss" scoped>
+#info {
+	border-collapse: collapse;
+	border: none;
+	width: 100%;
+	text-align: center;
+	.title {
+		background: #f9fafc;
+		font-size: 12px;
+		.handle_ {
+			width: 100px;
+		}
+	}
+	.wraps_ {
+		tr {
+			height: 40px;
+		}
+	}
+	tr {
+		height: 40px;
+		line-height: 40px;
+	}
+	tr {
+		border: solid #eeeeee 1px;
+	}
+}
+</style>
