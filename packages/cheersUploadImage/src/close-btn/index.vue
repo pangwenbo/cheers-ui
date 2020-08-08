@@ -14,5 +14,5 @@ export default {
 };
 </script>
 <style scoped>
-@import "../css/index.less";
+@import "../css/style.less";
 </style>

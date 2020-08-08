@@ -7,12 +7,10 @@
 		<cheers-upload-file @readyUpload="f_uploadLoading" :fileUpload='fileUpload' @overUpload="f_loadingOver"
 			:dataFile="fileListName" :dataFileNum="fileNum"></cheers-upload-file>
 
-		<cheers-upload-image :previewFile='previewFile' :uploadUrl='fileUpload' :text='text' v-model="pic" :isCropper="true"
-			:multi="2" :maxSize="10240" :width="150" :height="150">
+		<cheers-upload-image :previewFile='previewFile' :uploadUrl='fileUpload' :text='text' v-model="pic"
+			:isCropper="false" :multi="2" :maxSize="10240" :width="150" :height="150">
 		</cheers-upload-image>
-
 	</div>
-
 </template>
 <script>
 export default {

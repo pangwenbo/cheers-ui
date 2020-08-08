@@ -3,7 +3,8 @@
 		<el-row v-for="(row,index) in fieldList" :key="index+'row'">
 			<cheers-form-title :bdcolor="bdcolor" v-if="row.title" v-bind="row.attr">{{row.title}}</cheers-form-title>
 			<el-col v-for="(col,index) in row.row" :key="index+'col'" :span="col.col" v-bind="col.attr">
-				<cheers-form-title :bdcolor="bdcolor" v-if="col.title">{{col.title}}</cheers-form-title>
+				<cheers-form-title :bdcolor="bdcolor" :id='col.refs&&col.refs' v-if="col.title">{{col.title}}
+				</cheers-form-title>
 				<template v-for="item in col.list">
 					<el-form-item v-if="f_show(item.flag||true)" :key="item.value" :label="item.label" :value="item.value"
 						:prop="item.value" :rules="item.rules" :labelWidth="item.labelWidth">
