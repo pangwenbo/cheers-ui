@@ -1,6 +1,6 @@
 <template>
 	<div style="margin-bottom:50px;min-width:1000px">
-		<el-row type="flex" class="row-bg" justify="center">
+		<el-row>
 			<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="16">
 				<div class="index">
 					<div class="title">

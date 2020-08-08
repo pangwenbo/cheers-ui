@@ -27,6 +27,7 @@
 </template>
 <script>
 export default {
+	name: "cheersDynamicTable",
 	props: {
 		// 表头
 		tableHead: {
@@ -62,4 +63,7 @@ export default {
 </script>
 <style  scoped>
 @import "./css/index.scss";
+::v-deep .el-input__inner {
+	border: none;
+}
 </style>
