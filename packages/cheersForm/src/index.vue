@@ -1,7 +1,7 @@
 <template>
 	<el-form :inline="inline" :model="ruleForm" ref="ruleForm" :label-width="labelWidth">
 		<el-row v-for="(row,index) in fieldList" :key="index+'row'">
-			<cheers-form-title :bdcolor="bdcolor" :id='col.ref&&col.ref' v-if="row.title" v-bind="row.attr">{{row.title}}
+			<cheers-form-title :bdcolor="bdcolor" :id='row.ref&&row.ref' v-if="row.title" v-bind="row.attr">{{row.title}}
 			</cheers-form-title>
 			<el-col v-for="(col,index) in row.row" :key="index+'col'" :span="col.col" v-bind="col.attr">
 				<cheers-form-title :bdcolor="bdcolor" v-if="col.title">{{col.title}}
