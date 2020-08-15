@@ -10,9 +10,28 @@
 		<cheers-upload-image :previewFile='previewFile' :uploadUrl='fileUpload' :text='text' v-model="pic"
 			:isCropper="false" :multi="2" :maxSize="10240" :width="150" :height="150">
 		</cheers-upload-image>
+		<cheers-form slot="body" :inline="false" labelWidth="100px" ref="formrow" :ruleFormBtn="ruleFormBtn"
+			:ruleForm="ruleForm" :fieldList="fieldList" @f_listenBtn="f_listenBtn" @f_save="f_save">
+			<template v-slot:form-avatar>
+				<cheers-upload-image :previewFile='$previewFile' :uploadUrl='$uploadUrl' text='备注' v-model="ruleForm.avatar"
+					:isCropper="true" :multi="2" :maxSize="10240" :width="150" :height="150">
+				</cheers-upload-image>
+			</template>
+			<template v-slot:form-info>
+				<cheersDynamicTable :tableDataList='ruleForm.info' ruleKey="info" :tableHead='infoTableHead' />
+			</template>
+
+			<template v-slot:form-info2>
+				<cheersDynamicTable :tableDataList='ruleForm.info2' ruleKey="info2" :tableHead='info2TableHead' />
+			</template>
+		</cheers-form>
 	</div>
 </template>
 <script>
+let caseState = [
+	{ label: "男", value: "1" },
+	{ label: "女", value: "2" },
+];
 export default {
 	data() {
 		return {
@@ -27,11 +46,144 @@ export default {
 			fileNum: 8,
 			fileUpload: "http://39.106.141.151:20000/api/file/files/local/upload",
 			text: "备注",
-			previewFile: "http://39.106.141.151:20000/api/file/files/"
+			previewFile: "http://39.106.141.151:20000/api/file/files/",
+			ruleForm: {},
+			ruleFormBtn: [],
+
 		};
+	},
+	computed: {
+		fieldList() {
+			return [
+				{
+					ref: "infos",
+					row: [
+						{
+							title: "基本信息1",
+							col: 24,
+							list: [
+								{
+									type: "slot", solt: "info", labelWidth: "0",
+								},
+							],
+						},
+					],
+				},
+				{
+					row: [
+						{
+							title: "基本信息",
+							col: 24,
+							list: [
+								{
+									type: "slot", solt: "info2", labelWidth: "0",
+								},
+							],
+						},
+					],
+				},
+				{
+					row: [
+						{
+							title: "基本信息",
+							col: 24,
+							list: [
+								{
+									type: "slot", solt: "avatar", label: "图片", value: "avatar",
+									// 表单验证
+									rules: [{ required: true, message: "请选择图片", trigger: "change" }]
+								},
+								{
+									type: "NumberInput", label: "数字", value: "numberInput",
+									rules: [{ required: true, message: "Year", trigger: "change" }],
+									attr: { step: 5 },
+									change: row => { this.changeYear(row); }
+								},
+								{
+									type: "Input", label: "隐藏显示", value: "name", flag: 'this.ruleForm.numberInput == 5',
+									// 表单验证
+									rules: [{ required: true, message: "请输入姓名", trigger: "blur" }]
+								},
+								{
+									type: "Input", label: "输入框", value: "show",
+									// 表单验证
+									rules: [{ required: true, message: "请输入姓名", trigger: "blur" }]
+								},
+								{
+									type: "Password", label: "密码框", value: "pass",
+									// 表单验证
+									rules: [{ required: true, message: "请输入活动名称", trigger: "blur" }]
+								},
+
+								{
+									type: "Select", label: "下拉框", value: "sex",
+									// 渲染数组// 下拉转换
+									options: caseState, props: { label: "label", value: "value" },
+									attr: {
+										clearable: true
+									},
+									rules: [{ required: true, message: "请选择性别", trigger: "change" }],
+									change: row => { this.changeSex(row); }
+								}, {
+									type: "Radio", label: "单选", value: "radio",
+									// 渲染数组// 下拉转换
+									options: caseState,
+									props: { label: "label", value: "value" }, attr: {
+										border: true
+									},
+									rules: [{ required: true, message: "请选择性别", trigger: "change" }],
+									change: row => { this.changeSex(row); }
+								}, {
+									type: "Checkbox", label: "复选", value: "box",
+									// 渲染数组// 下拉转换
+									options: caseState,
+									props: { label: "label", value: "value" }, attr: {
+										border: true
+									},
+									rules: [{ required: true, message: "请选择性别", trigger: "change" }],
+									change: row => { this.changeSex(row); }
+								},
+								{
+									type: "Year", label: "年", value: "year",
+									rules: [{ required: true, message: "Year", trigger: "change" }],
+									change: row => { this.changeYear(row); }
+								}, {
+									type: "YearMonth", label: "年月", value: "yearMonth",
+									rules: [{ required: true, message: "Year", trigger: "change" }],
+									change: row => { this.changeYear(row); }
+								}, {
+									type: "Date", label: "年月日", value: "date",
+									rules: [{ required: true, message: "Year", trigger: "change" }],
+									change: row => { this.changeYear(row); }
+								}, {
+									type: "DateRange", label: "时间区间", value: "dateRange",
+									rules: [{ required: true, message: "Year", trigger: "change" }],
+									change: row => { this.changeYear(row); }
+								}, {
+									type: "Switch", label: "开关", value: "Switch",
+									rules: [{ required: true, message: "Year", trigger: "change" }],
+									change: row => { this.changeYear(row); }
+								},
+								// {
+								// 	type: "Select", label: "所属部门", value: "depart", options: [], placeholder: "请选择所属部门",
+								// 	rules: [{ required: true, message: "请选择所属部门", trigger: "change" }],
+								// 	change: row => "",
+								// },
+							],
+						},
+					],
+				},
+			];
+		}
 	},
 	mounted() {
 		let that = this;
+
+		this.$nextTick(() => {
+			var divs = document.getElementById('infos');
+
+			console.log(divs)
+		})
 		//扩展列数据
 		this.expandList = [
 			{
