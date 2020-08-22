@@ -56,7 +56,9 @@
 						<el-input v-if="item.type === 'Password'" v-model="ruleForm[item.value]"
 							:show-password="item.type === 'Password'" :placeholder="item.placeholder||'请输入'+item.label"
 							v-bind="item.attr" />
-						<el-input-number v-if="item.type === 'NumberInput'" v-model="ruleForm[item.value]" v-bind="item.attr" />
+						<el-input-number v-if="item.type === 'NumberInput'"
+							@change="item.change && item.change(ruleForm[item.value])" v-model="ruleForm[item.value]"
+							v-bind="item.attr" />
 						<!--下拉框  $forceUpdate() 下拉刷新,修复数据改变下拉框不变的bug -->
 						<el-select v-if="item.type === 'Select'" v-model="ruleForm[item.value]" @visible-change="$forceUpdate()"
 							:placeholder=" item.placeholder||'请选择'+item.label" v-bind="item.attr"
