@@ -13,6 +13,7 @@
 						<template v-if="item.type === 'slot'">
 							<slot :name="'form-' + item.solt" />
 						</template>
+						<!--  数字 文本框 下拉框 动态表单 -->
 						<div v-if="item.type === 'Dynamic'">
 							<table id="info" border="">
 								<tr class="title">
@@ -22,7 +23,11 @@
 								<tr class="wraps_" v-for="(row, indexs) in ruleForm[item.value]" :key="row.indexs">
 									<td v-for="(dynamicItem,ids) in item.formItem" :key="ids+dynamicItem">
 										<el-form-item :prop="item.value+'.' + indexs + '.'+dynamicItem.value" :rules="dynamicItem.rules">
+											<el-input-number v-if="dynamicItem.type === 'NumberInput'"
+												@change="dynamicItem.change && dynamicItem.change(ruleForm[item.value][indexs][dynamicItem.value])"
+												v-model="ruleForm[item.value][indexs][dynamicItem.value]" v-bind="dynamicItem.attr" />
 											<el-input v-if="dynamicItem.type==='Input'"
+												@change="dynamicItem.change && dynamicItem.change(ruleForm[item.value][indexs][dynamicItem.value])"
 												v-model="ruleForm[item.value][indexs][dynamicItem.value]" style="border:none"
 												v-bind="dynamicItem.attr" />
 											<el-select v-if="dynamicItem.type === 'Select'"
