@@ -2,7 +2,7 @@
 	<div class="search_input">
 		<el-form :inline="inline" :model="searchForm" ref="searchForm" class="demo-form-inline" :label-width="labelWidth">
 			<el-form-item v-for="item in fieldList" :key="item.value" :label="item.label" :value="item.value"
-				:prop="item.value">
+				:labelWidth="item.labelWidth" :prop="item.value">
 				<!-- solt -->
 				<template v-if="item.type === 'slot'">
 					<slot :name="'form-' + item.solt" />
