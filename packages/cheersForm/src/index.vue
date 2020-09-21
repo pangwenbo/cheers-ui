@@ -1,7 +1,9 @@
 <template>
 	<el-form :inline="inline" :model="ruleForm" ref="ruleForm" :label-width="labelWidth">
 		<el-row v-for="(row,index) in fieldList" :key="index+'row'">
-			<cheers-form-title :bdcolor="bdcolor" :id='row.ref&&row.ref' v-if="row.title" v-bind="row.attr">{{row.title}}
+			<cheers-form-title :bdcolor="bdcolor" :id='row.ref&&row.ref' :ref="row.ref&&row.ref" v-if="row.title"
+				v-bind="row.attr">
+				{{row.title}}
 			</cheers-form-title>
 			<el-col v-for="(col,index) in row.row" :key="index+'col'" :span="col.col" v-bind="col.attr">
 				<cheers-form-title :bdcolor="bdcolor" v-if="col.title">{{col.title}}
@@ -117,12 +119,14 @@
 				</template>
 			</el-col>
 		</el-row>
-		<el-form-item>
-			<el-button v-for="(item, index) in ruleFormBtn" :key="index+'formBtn'"
-				@click="f_clickBtn(item.methods,item.option)" type="primary">
-				<i :class="item.icon"></i>
-				<span>{{item.title}}</span>
-			</el-button>
+		<el-form-item label-width="0">
+			<div style="width:100%;text-align:center">
+				<el-button v-for="(item, index) in ruleFormBtn" :key="index+'formBtn'"
+					@click="f_clickBtn(item.methods,item.option)" type="primary">
+					<i :class="item.icon"></i>
+					<span>{{item.title}}</span>
+				</el-button>
+			</div>
 		</el-form-item>
 	</el-form>
 </template>
