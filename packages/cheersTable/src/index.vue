@@ -36,13 +36,12 @@
 			},-->
 			<template v-for="(item, index) in tableHead">
 				<!-- 默认 -->
-				<el-table-column :key="index+'tableHead'" v-if="!item.render" :label="item.label" :prop="item.prop"
-					v-show="f_show(item.showRow||true)" :width="item.width" :header-align="item.headerAlign||'center'"
-					:align="item.align||'center'" :fixed="item.fixed||false" :sortable="item.sortable||false"
-					:show-overflow-tooltip="true"></el-table-column>
+				<el-table-column :key="index+'tableHead'" v-if="!item.render&&f_show(item.showRow||true)" :label="item.label"
+					:prop="item.prop" :width="item.width" :header-align="item.headerAlign||'center'" :align="item.align||'center'"
+					:fixed="item.fixed||false" :sortable="item.sortable||false" :show-overflow-tooltip="true"></el-table-column>
 				<!-- 自定义渲染组件或者html元素 -->
-				<el-table-column :key="index+'tableHead'" v-else :label="item.label" :prop="item.prop" :width="item.width"
-					v-show="f_show(item.showRow||true)" :header-align="item.headerAlign||'center'" :align="item.align||'center'"
+				<el-table-column :key="index+'tableHead'" v-if="item.render&&f_show(item.showRow||true)" :label="item.label"
+					:prop="item.prop" :width="item.width" :header-align="item.headerAlign||'center'" :align="item.align||'center'"
 					:fixed="item.fixed||false" :sortable="item.sortable||false" :show-overflow-tooltip="true">
 					<template slot-scope="scope">
 						<row :row="scope.row" :col="item" :render="item.render" :col-index="index" />
@@ -93,7 +92,7 @@ export default {
 		}
 	},
 	props: {
-		searchFrom: {
+		searchForm: {
 			//搜索bar，有时候需要根据这个显示和隐藏列
 			type: Object,
 			default: () => { }
@@ -176,6 +175,7 @@ export default {
 	methods: {
 		// 判断操作列按钮显示、隐藏
 		f_show(itemshowBtn, scope) {
+			console.log(itemshowBtn, eval(itemshowBtn))
 			return eval(itemshowBtn);
 		},
 		// 操作列 按钮方法
