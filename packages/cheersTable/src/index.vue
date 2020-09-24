@@ -34,15 +34,16 @@
 					fixed: false, // 列是否固定，默认false
 					sortable: true //是否开启排序默，认false
 			},-->
-			<template v-for="(item, index) in tableHead" v-show="f_show(item.showRow||true)">
+			<template v-for="(item, index) in tableHead">
 				<!-- 默认 -->
 				<el-table-column :key="index+'tableHead'" v-if="!item.render" :label="item.label" :prop="item.prop"
-					:width="item.width" :header-align="item.headerAlign||'center'" :align="item.align||'center'"
-					:fixed="item.fixed||false" :sortable="item.sortable||false" :show-overflow-tooltip="true"></el-table-column>
+					v-show="f_show(item.showRow||true)" :width="item.width" :header-align="item.headerAlign||'center'"
+					:align="item.align||'center'" :fixed="item.fixed||false" :sortable="item.sortable||false"
+					:show-overflow-tooltip="true"></el-table-column>
 				<!-- 自定义渲染组件或者html元素 -->
 				<el-table-column :key="index+'tableHead'" v-else :label="item.label" :prop="item.prop" :width="item.width"
-					:header-align="item.headerAlign||'center'" :align="item.align||'center'" :fixed="item.fixed||false"
-					:sortable="item.sortable||false" :show-overflow-tooltip="true">
+					v-show="f_show(item.showRow||true)" :header-align="item.headerAlign||'center'" :align="item.align||'center'"
+					:fixed="item.fixed||false" :sortable="item.sortable||false" :show-overflow-tooltip="true">
 					<template slot-scope="scope">
 						<row :row="scope.row" :col="item" :render="item.render" :col-index="index" />
 					</template>
